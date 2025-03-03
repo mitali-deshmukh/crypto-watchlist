@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --background: #121212;
+  --foreground: #212121;
+  --buttons:#ecf0f1;
+  --text:white;
+}
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li{
+  background: var(--foreground);
+  padding:15px;
+  margin: 15px;
+}
+
+.top-bar{
+  padding: 15px;
+}
+
+.refresh-button {
+  background-color: var(--buttons); 
+  border: none; 
+  border-radius: 50%; 
+  width: 45px; 
+  height: 45px; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.refresh-button:hover {
+  transform: scale(1.1); 
+}
+
+.refresh-button:active {
+  background-color: #1d1d1d; 
+  transform: scale(0.95); 
+}
+
+.refresh-icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--background); 
+  transition: transform 0.3s ease; 
+}
+
+.refresh-button:active .refresh-icon {
+  transform: rotate(360deg);
+}
+
+input{
+  background: var(--foreground);
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--text);
+  border-color: transparent;
+}
+input:focus {
+  outline: none; 
+  border: 1px solid transparent; 
+}
