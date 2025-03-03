@@ -1,4 +1,4 @@
-The Cryptocurrency Dashboard is a web application designed to provide real-time information on the latest prices of popular cryptocurrencies. Built using Next.js and integrated with the CoinGecko API, this app offers a clean and user-friendly interface for tracking cryptocurrency prices.
+This is a web application designed to provide real-time information on the latest prices of popular cryptocurrencies. Built using Next.js and integrated with the CoinGecko API, this app offers a clean and user-friendly interface for tracking cryptocurrency prices.
 
 Features
 
