@@ -1,71 +1,143 @@
 @import "tailwindcss";
 
 :root {
-  --background: #121212;
-  --foreground: #212121;
-  --buttons:#ecf0f1;
-  --text:white;
+  --background: #2A2A32;
+  --foreground: #41414d;
+  --text: white;
+  --accent: #1FB8CD;
 }
 
-
 body {
-  color: var(--foreground);
+  color: var(--text);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-li{
+li {
   background: var(--foreground);
-  padding:15px;
+  padding: 15px;
   margin: 15px;
 }
 
-.top-bar{
+.top-bar {
   padding: 15px;
 }
 
 .refresh-button {
-  background-color: var(--buttons); 
-  border: none; 
-  border-radius: 50%; 
-  width: 45px; 
-  height: 45px; 
-  display: flex; 
+  background-color: var(--accent);
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  transition: background-color 0.3s ease, transform 0.3s ease; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .refresh-button:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .refresh-button:active {
-  background-color: #1d1d1d; 
-  transform: scale(0.95); 
+  background-color: #1d1d1d;
+  transform: scale(0.95);
 }
 
 .refresh-icon {
   width: 24px;
   height: 24px;
-  fill: var(--background); 
-  transition: transform 0.3s ease; 
+  fill: var(--accent);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  
 }
 
 .refresh-button:active .refresh-icon {
   transform: rotate(360deg);
 }
 
-input{
+.add-button {
+  background-color: var(--accent);
+  border: none;
+  border-radius: 9999px;
+  padding: 0 16px;
+  margin-left: 8px;
+  color: var(--background);
+  font-size: 0.875rem;
+  cursor: pointer;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-button:hover {
+  transform: scale(1.03);
+}
+
+.add-button:active {
+  transform: scale(0.97);
+}
+
+input {
   background: var(--foreground);
   padding: 5px;
   border-radius: 10px;
   color: var(--text);
   border-color: transparent;
 }
+
 input:focus {
-  outline: none; 
-  border: 1px solid transparent; 
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.watchlist-item {
+  cursor: pointer;
+}
+
+.dark-glass {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  backdrop-filter: blur(4px);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+/* .watchlist-item:hover {
+  background-color: var(--accent);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} */
+
+.shadow {
+  box-shadow:
+    inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
+    0 0 0 1px hsla(0, 0%, 0%, 0.05),
+    0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+    0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
+    0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+}
+
+.remove-button {
+  background-color: var(--foreground);
+  color: var(--accent);
+  /* border: 1px solid var(--accent); */
+  border-radius: 100%;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+
+.coin-dropdown-item {
+  font-size: 0.75rem;
+  padding: 8px 12px;
+}
+
+.coin-dropdown-item span:first-child {
+  max-width: 70%;
 }
