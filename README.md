@@ -3,7 +3,7 @@
 Simple crypto watchlist built with Next.js and React Query.  
 You can search, add, remove, and refresh coins, and the app keeps your watchlist in localStorage.
 
-![demo](https://giphy.com/gifs/GzSV5ztHZ7PvNlqyko)
+![demo](https://youtu.be/9gt3Te7AG_4)
 
 ## Features
 
