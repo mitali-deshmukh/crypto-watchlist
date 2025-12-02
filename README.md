@@ -1,27 +1,103 @@
-This is a web application designed to provide real-time information on the latest prices of popular cryptocurrencies. Built using Next.js and integrated with the CoinGecko API, this app offers a clean and user-friendly interface for tracking cryptocurrency prices.
+# Crypto Watchlist
 
-Features
+Simple crypto watchlist built with Next.js and React Query.  
+You can search, add, remove, and refresh coins, and the app keeps your watchlist in localStorage.
 
-Real-Time Prices: Displays the latest prices for Bitcoin (BTC), Ethereum (ETH), XRP, Cardano (ADA), and Litecoin (LTC).
+![demo]([https://media3.giphy.com/media/aUovxH8Vf9qDu/giphy.gif](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Jjd2w5bm5pNHB3ZGxzZnF1aTNuMHhob2VjeDZqbGlhY2N0a29nNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GzSV5ztHZ7PvNlqyko/giphy.gif))
 
-Search Functionality: Allows users to filter cryptocurrencies by name or symbol.
+## Features
 
-Manual Refresh: Includes a refresh button to fetch updated prices on demand.
+- Default watchlist with popular coins on first load
+- Persistent watchlist stored in localStorage between sessions
+- Search within your watchlist
+- Add new coins from the full CoinGecko list with:
+  - Fuzzy search by name, symbol, or id
+  - Keyboard navigation with arrow keys and Enter
+- Remove coins from the watchlist
+- Manual refresh of prices
+- Initial full page loading state only on first load
+- Uses CoinGecko public API for prices and coin metadata
 
-Responsive Design: Optimized for both desktop and mobile devices.
 
-Setting up the project : 
-1. Clone the Repository
+## Watchlist Behavior
 
-git clone https://github.com/mitali-deshmukh/crypto-watchlist.git
-cd web-app\crypto-dashboard
+- On first load:
+  - Tries to read `watchlist` from `localStorage`
+  - If missing or invalid, falls back to:
+    - `["bitcoin", "ethereum", "ripple", "litecoin", "cardano"]`
+- On change:
+  - Writes the current `watchlist` back to `localStorage`
+  - If the list is empty, the key is removed
 
-2. Install Dependencies
+## Data Fetching
 
-Using npm:
+### Prices
+
+React Query configuration:
+
+- `queryKey: ["cryptoPrices", watchlist]`
+- `queryFn: () => fetchCryptoPrices(watchlist)`
+- Enabled only if:
+  - `isWatchlistReady` is true
+  - `watchlist.length > 0`
+- `keepPreviousData: true` to avoid flicker when refetching
+
+There is a `Refresh` button that calls `refetch` manually.  
+`isFetching` is used to disable the button while a refresh is running.
+
+### Coin List
+
+React Query configuration:
+
+- `queryKey: ["coinList"]`
+- `queryFn: () => fetchCoinList()`
+- Enabled only after the user interacts with the "Search coins to add" input
+- `staleTime: 1000 * 60 * 60` (1 hour)
+
+The coin dropdown:
+
+- Filters by name, symbol, or id
+- Sorts results to prioritize:
+  - Exact symbol
+  - Exact id
+  - Exact name
+  - Partial matches
+- Caps results at 20 items
+
+## Loading States
+
+The app uses a `Spinner` component and an internal flag:
+
+- `isInitialLoading` is true only when:
+  - The watchlist is not ready, or
+  - The first price fetch is in progress with no data yet
+- A separate `hasLoadedOnce` flag ensures the full page loader is shown only on the first load
+- Later refetches, such as when you add a coin, will not show the full screen loader
+
+## Keyboard Support
+
+In the "Search coins to add" input:
+
+- ArrowDown / ArrowUp to move through the dropdown list
+- Enter or Insert to select the highlighted coin
+- Escape to close the dropdown
+
+If the dropdown is closed and you press ArrowDown or ArrowUp while there are results, it opens the dropdown.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS)
+- npm, yarn, or pnpm
+
+### Installation
+
+Clone the repository, then install dependencies:
+
+```bash
 npm install
-
-Or using yarn:
-yarn install
-
-![image](https://github.com/user-attachments/assets/9880a0f7-f621-4c9c-97f0-2133c3daa250)
+# or
+yarn
+# or
+pnpm install
